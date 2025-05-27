@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.student.service.entity.Student;
+import com.student.service.entity.primary.Student;
 import com.student.service.impl.StudentService;
+import com.student.service.model.UserRequest;
 
 @RestController("STU-CONT")
 @RequestMapping("/student")
@@ -25,7 +26,9 @@ public class StudentController {
 	}
 
 	@PostMapping("/save")
-	public ResponseEntity<Student> save(@RequestBody Student s) {
+	public ResponseEntity<Student> save(@RequestBody UserRequest s) {
+		
+		System.out.println(s.toString());
 		Student savestudent = studentService.savestudent(s);
 		return new ResponseEntity<Student>(savestudent, HttpStatus.OK);
 	}
